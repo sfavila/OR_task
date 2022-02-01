@@ -1,0 +1,46 @@
+{
+  "2018_03_21 11:04": {
+    "distance": 82, 
+    "psychopyVersion": "1.90.0", 
+    "gammaGrid": {
+      "__ndarray__": [
+        [
+          0.0, 
+          1.0, 
+          1.0
+        ], 
+        [
+          0.0, 
+          1.0, 
+          1.0
+        ], 
+        [
+          0.0, 
+          1.0, 
+          1.0
+        ], 
+        [
+          0.0, 
+          1.0, 
+          1.0
+        ]
+      ], 
+      "dtype": "float64", 
+      "shape": [
+        4, 
+        3
+      ], 
+      "Corder": true
+    }, 
+    "sizePix": [
+      1920, 
+      1080
+    ], 
+    "notes": null, 
+    "width": 60, 
+    "linearizeMethod": 1, 
+    "calibDate": 1521644651.0, 
+    "usebits": false, 
+    "gamma": null
+  }
+}
