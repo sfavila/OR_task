@@ -126,7 +126,7 @@ def main(arglist):
 	r_design['stim_dur'] = stim_dur
 
 
-	##---Source task design---##
+	##---Location/source task design---##
 	
 	# Define task variables
 	ln_trials = sn_trials

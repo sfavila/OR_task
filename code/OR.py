@@ -34,11 +34,7 @@ def main(arglist):
 	##---Display and device set up---##
 
 	# Define monitor params for each experiment phase
-	monitor_info = {'badlands': {'units':'deg', 'fullscr':False, 'screen':0,
-								 'size':[800, 600]},
-					'hopper':   {'units':'deg', 'fullscr':False, 'screen':0, 
-								 'size':[800, 800]},
-					'hp957c':   {'units':'deg', 'fullscr':True, 'screen':0,
+	monitor_info = {'hp957c':   {'units':'deg', 'fullscr':True, 'screen':0,
 								 'size':[1680, 1050]},
 					'propixx':  {'units':'deg', 'fullscr':True, 'screen':0,
 								 'size':[1920, 1080]}}
@@ -73,20 +69,21 @@ def main(arglist):
 	stim = dict()
 	stim['ref'] = makeref(win)
 	stim['fix'] = vis.Circle(win, radius=.08, fillColor='#cb181d', lineColor='#cb181d')  
-	stim['img_tmp'] = '/Volumes/server/Projects/Object_Recog/task/stim/%s.png'
+	stim['img_tmp'] = '../stim/%s.png'
 
 	# Optionally display dartboard for testing screen
 	if p.screentest:
 		dartboard(win, stim)
 
 	# Load experimental stimulus info for this subject
-	stim_info = pd.read_csv(op.join('../design/%s/stim_info.csv' %p.subject))
+	stim_info = pd.read_csv(op.join('../design', p.subject, 'stim_info.csv'))
 
 
 	##---Run Experiment---##
 
-	# Load design info for this phase
-	design = pd.read_csv(op.join('../design/%s/design_ses-%02d.csv' %(p.subject, p.session)))
+	# Load design info for this session
+	design_file = op.join('../design', p.subject, 'design_ses-%02d.csv') 
+	design = pd.read_csv(design_file %p.session)
 
 	# Figure out starting block and num blocks
 	if p.block is not None:
@@ -94,7 +91,7 @@ def main(arglist):
 	nblocks = design['block'].max()
 
 	# Make data directory
-	data_dir = op.join('../data/', p.subject)
+	data_dir = op.join('../data', p.subject)
 	if not op.exists(data_dir):
 		os.makedirs(data_dir)
 
@@ -113,8 +110,8 @@ def main(arglist):
 
 		# Write data to csv
 		data = pd.concat(data, sort=False).reset_index(drop=True)
-		data_file = '../data/%s/sub-%s_ses-%02d_task-%s_run-%02d_behav.csv' 
-		data.to_csv(data_file %(p.subject, p.subject, p.session, btype, b), index=False)
+		data_file = op.join(data_dir, 'sub-%s_ses-%02d_task-%s_run-%02d_behav.csv')
+		data.to_csv(data_file %(p.subject, p.session, btype, b), index=False)
 
 		# Stop eyetracker and get edf
 		if p.eyetrack:
