@@ -220,7 +220,7 @@ def study(win, p, stim, b_design, nblocks):
 
         # Record trial onset in edf
         if p.eyetrack: 
-            p.el.sendMessage("TRIALID %02d -- %s" %(t_i+1, img_stim['stim_id']))
+            p.el.sendMessage("TRIALID %02d %s" %(t_i+1, t['stim_id']))
 
         # Listen for subject button press 
         rt_clock = core.MonotonicClock()
@@ -330,7 +330,7 @@ def recog(win, p, stim, b_design, nblocks):
 
         # Record trial onset in edf
         if p.eyetrack: 
-            p.el.sendMessage("TRIALID %02d -- %s" %(t_i+1, img_stim['stim_id']))
+            p.el.sendMessage("TRIALID %02d %s" %(t_i+1, t['stim_id']))
 
         # Listen for subject button press 
         rt_clock = core.MonotonicClock()
@@ -438,7 +438,7 @@ def loc(win, p, stim, b_design, nblocks):
 
         # Record trial onset in edf
         if p.eyetrack: 
-            p.el.sendMessage("TRIALID %02d -- %s" %(t_i+1, img_stim['stim_id']))
+            p.el.sendMessage("TRIALID %02d %s" %(t_i+1, t['stim_id']))
 
         # Listen for subject button press 
         rt_clock = core.MonotonicClock()
